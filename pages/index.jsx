@@ -6,7 +6,7 @@ import { InputText } from '../components/form/input-text'
 import { InputTextarea } from '../components/form/input-textarea'
 import { composeValidators, email, required } from '../components/form/validate'
 
-const RATE_LIMIT_TIMEOUT = 60_000 //ms
+const RATE_LIMIT_TIMEOUT = 10_000 //ms
 
 const Index = () => {
   const [isFormDisabled, setIsFormDisabled] = useState(false)
