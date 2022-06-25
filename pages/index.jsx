@@ -1,3 +1,4 @@
+import { FORM_ERROR } from 'final-form'
 import Head from 'next/head'
 import { useEffect, useState } from 'react'
 import { Form } from 'react-final-form'
@@ -14,12 +15,19 @@ const Index = () => {
 
   const [timeLeft, setTimeLeft] = useState()
 
-  const onSubmit = (data, form) => {
+  const onSubmit = async (data, form) => {
     setIsFormDisabled(true)
 
-    // TODO: Submit Data
-    console.log(data)
+    const response = await fetch('/api/submit-question', {
+      method: 'POST',
+      body: JSON.stringify(data)
+    })
 
+    if(!response.ok) {
+      const text = await response.json()
+      return { [FORM_ERROR]: text }
+    }
+    
     setTimeout(() => {
       setIsFormDisabled(false)
       setHasSentQuestion(true)
@@ -70,8 +78,9 @@ const Index = () => {
               <Form
                 disabled={isFormDisabled}
                 onSubmit={onSubmit}
-                render={({ handleSubmit, hasValidationErrors }) => (
+                render={({ handleSubmit, hasValidationErrors, submitError }) => (
                   <form onSubmit={handleSubmit}>
+                    {console.log(submitError)}
                     <InputText
                       label="E-Mail"
                       id="email"
@@ -87,6 +96,9 @@ const Index = () => {
                       disabled={isFormDisabled}
                       validate={required}
                     />
+                    {submitError &&
+                      <span className="text-red-400 text-sm">{submitError}</span>
+                    }
                     <div className="mt-2 flex justify-end">
                       <Button
                         primary
