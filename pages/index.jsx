@@ -17,9 +17,17 @@ const Index = () => {
 
   const onSubmit = async (data, form) => {
     setIsFormDisabled(true)
+    setHasSentQuestion(true)
+
+    const nextSendTimeValue = Date.now() + RATE_LIMIT_TIMEOUT
+    setTimeLeft(RATE_LIMIT_TIMEOUT / 1000)
+    awaitNextSend(nextSendTimeValue)
 
     const response = await fetch('/api/submit-question', {
       method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
       body: JSON.stringify(data)
     })
 
@@ -27,15 +35,9 @@ const Index = () => {
       const text = await response.json()
       return { [FORM_ERROR]: text }
     }
-    
-    setTimeout(() => {
-      setIsFormDisabled(false)
-      setHasSentQuestion(true)
-      form.restart()
-    }, [1000])
+    form.restart()
+    setIsFormDisabled(false)
 
-    const nextSendTimeValue = Date.now() + RATE_LIMIT_TIMEOUT
-    awaitNextSend(nextSendTimeValue)
   }
 
   useEffect(() => {
@@ -80,7 +82,6 @@ const Index = () => {
                 onSubmit={onSubmit}
                 render={({ handleSubmit, hasValidationErrors, submitError }) => (
                   <form onSubmit={handleSubmit}>
-                    {console.log(submitError)}
                     <InputText
                       label="E-Mail"
                       id="email"
