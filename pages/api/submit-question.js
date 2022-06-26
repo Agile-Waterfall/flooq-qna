@@ -9,7 +9,7 @@ export default async function handler(req, res) {
 
   if (!response.ok) {
     res.status(500).json('Failed to send question')
-  } else {
-    res.status(200).json('Success')
+    return
   }
+  res.status(200).json('Success')
 }
