@@ -75,7 +75,7 @@ const Index = () => {
         <div className="max-w-5xl mx-auto py-6 sm:px-6 lg:px-8">
           <div className="px-4 py-6 sm:px-0 flex flex-col gap-4">
             <h1 className="text-3xl font-bold text-gray-800 dark:text-gray-100 truncate">Ask us anything</h1>
-            <p className="text-md font-light text-gray-500">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+            <p className="text-md font-light text-gray-500">Fill in your email address and the question you have. Your email address is only used to identify who sent the question will no be used for any other purpose.</p>
             {!hasSentQuestion &&
               <Form
                 disabled={isFormDisabled}
