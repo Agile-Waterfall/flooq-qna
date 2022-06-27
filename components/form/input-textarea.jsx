@@ -6,14 +6,21 @@ export const InputTextarea = ({ id, label, validate, ...rest }) => (
     validate={validate}
     render={({ input, meta }) => (
       <div className="mt-4">
-        <label htmlFor="first-name" className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
+        <label htmlFor="first-name" className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2  dark:text-gray-200">
           {label}
         </label>
         <div className="mt-1">
           <textarea
             id={id}
             name={id}
-            className={`shadow-sm focus:ring-blue-500 focus:border-blue-500 block w-full sm:text-sm border-gray-300 disabled:text-gray-400 disabled:cursor-not-allowed disabled:bg-gray-100 rounded-md ${meta.touched && meta.error && 'border-red-300 text-red-900 placeholder-red-300'}`}
+            className={`
+              shadow-sm block w-full sm:text-sm rounded-md 
+              border-gray-300 focus:border-blue-500 focus:ring-blue-500
+              dark:bg-gray-900
+              text-gray-900 dark:text-gray-100
+              disabled:text-gray-400 disabled:cursor-not-allowed disabled:bg-gray-100 
+              disabled:dark:text-gray-500 disabled:dark:bg-gray-700 disabled:dark:border-gray-700"
+              ${meta.touched && meta.error && 'border-red-300 text-red-900 placeholder-red-300'}`}
             {...rest}
             {...input}
           >

@@ -75,7 +75,7 @@ const Index = () => {
         <div className="max-w-5xl mx-auto py-6 sm:px-6 lg:px-8">
           <div className="px-4 py-6 sm:px-0 flex flex-col gap-4">
             <h1 className="text-3xl font-bold text-gray-800 dark:text-gray-100 truncate">Ask us anything</h1>
-            <p className="text-md font-light text-gray-500">Fill in your email address and the question you have. Your email address is only used to identify who sent the question will no be used for any other purpose.</p>
+            <p className="text-md font-light text-gray-500 dark:text-gray-300">Fill in your email address and the question you have. Your email is only used to identify who sent the question and to send answers at a later time. Your email will no be used for any other purpose.</p>
             {!hasSentQuestion &&
               <Form
                 disabled={isFormDisabled}
@@ -88,7 +88,7 @@ const Index = () => {
                       placeholder="name@students.zhaw.ch"
                       disabled={isFormDisabled}
                       validate={composeValidators(required, email)}
-                    />
+                    />x
                     <InputTextarea
                       label="Question"
                       name="question"
