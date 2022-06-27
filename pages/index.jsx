@@ -88,7 +88,7 @@ const Index = () => {
                       placeholder="name@students.zhaw.ch"
                       disabled={isFormDisabled}
                       validate={composeValidators(required, email)}
-                    />x
+                    />
                     <InputTextarea
                       label="Question"
                       name="question"
